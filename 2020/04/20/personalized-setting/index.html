@@ -16,7 +16,7 @@
     <meta name="keywords" content="vincynese,fangyan,fy's blog">
 
 
-<title>搭载Github+hexo博客记录 | Super vincynese&#39;s blog</title>
+<title>personalized_setting | Super vincynese&#39;s blog</title>
 
 
 
@@ -181,99 +181,25 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">搭载Github+hexo博客记录</h1>
+            <h1 class="post-title">personalized_setting</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">四月 18, 2020&nbsp;&nbsp;9:47:38</a>
+                        Date: <a href="#">四月 20, 2020&nbsp;&nbsp;10:30:49</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/category/blog/">blog</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>首先：<a href="https://github.com/" target="_blank" rel="noopener">注册Github账号</a> + 创建Github仓库 + <a href="https://www.aliyun.com/" target="_blank" rel="noopener">购买域名</a>，开搞！</p>
-<p>注： 仓库名最好是，用户名.github.io</p>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/sign_up_repository.PNG">
-</div>
-
-
-
-
-<h2 id="1-搭载hexo环境"><a href="#1-搭载hexo环境" class="headerlink" title="1.搭载hexo环境"></a>1.搭载hexo环境</h2><p>###1.1 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">Git安装</a><br>###1.2 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js+npm安装</a><br>注：打开cmd输入一下检测是否安装成功</p>
-<pre><code>git --version
-node -v
-npm -v</code></pre><p>###1.3 配置ssh免密登录<br>打开Git Bash，配置用户信息</p>
-<pre><code>git config --global user.name 自己的Github用户名
-git config --global user.email 自己的注册邮箱</code></pre><p>生成此账户的ssh密钥</p>
-<pre><code>ssh-keygen -t rsa -C 自己的注册邮箱</code></pre><p>连续三个回车<br>找到生成的.ssh文件，复制id_rsa.pub中的内容<br>打开Github账户的的仓库设置密钥界面，Title随意，将内容复制到Key中即可</p>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/ssh_repository.PNG">
-</div>
-
-<p>检测是否免密成功，打开Git Bash输入</p>
-<pre><code>ssh git@github.com</code></pre><p>出现类“successfully authenticated”即可。</p>
-<h2 id="2-安装并初始化hexo"><a href="#2-安装并初始化hexo" class="headerlink" title="2.安装并初始化hexo"></a>2.安装并初始化hexo</h2><p>在本地创建一个文件夹命名Blog，存放博客框架以及未来要发布的网页；</p>
-<p>单机文件夹，按住shift键，打开shell，如此即可在此目录下进行操作</p>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/shiftshell.PNG">
-</div>
-
-<pre><code>npm install -g hexo-cli #安装hexo
-npm install hexo-deployer-git --save #安装Git部署插件
-hexo init 你刚创建的博客文件名 #初始化
-
-可先预览
-hexo g #生成静态文件
-hexo s #生成本地服务器，用于预览</code></pre><p>打开浏览器，输入localhost:4000，就是雏形。</p>
-<h2 id="3-映射hexo与Github仓库"><a href="#3-映射hexo与Github仓库" class="headerlink" title="3.映射hexo与Github仓库"></a>3.映射hexo与Github仓库</h2><p>上一步只能在本地预览博客，想要被其他人看到，就要告知hexo，博客的具体位置，因为把博客托管在github中，因此，建立它们的映射关系；</p>
-<p>打开自己建的博客文件，找到_config.yml配置文件，拉到最底下，在repo后填入你Github仓库的路径，最后加上.git，记得最前面还有个空格,保存。</p>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/config_repo.PNG">
-</div>
-
-
-<p>映射关系成功建立，可以通过hexo来部署博客了，</p>
-<pre><code>hexo clean #清楚缓存文件，防止更新不及时
-hexo d -g  #生成静态文件，并部署配置文件</code></pre><p>在浏览器，输入 用户名.github.io ，我的博客可以在网络上被访问啦。</p>
-<h2 id="4-绑定个性化域名"><a href="#4-绑定个性化域名" class="headerlink" title="4.绑定个性化域名"></a>4.绑定个性化域名</h2><p>打开阿里云，进入控制台，点击域名解析，添加记录，<br>192.30.252.153是Github的地址；</p>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/aliyun.PNG">
-</div>
-这个的主机记录，我写了blog，那么在网页上找我的博客，输入blog.superfwithy.com即可，可以写其他自己喜欢的。
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/aliyun2.PNG">
-</div>
-进入仓库，找到Setting，修改domian，
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/domainchange.PNG">
-</div>
-
-<p>进入本地博客的文件夹，在source目录下，创建一个CNAME的记事本文件，输入自己的域名，保存。</p>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/CNAME.PNG">
-</div>
-<div align="center">
-<img width="500" src="/2020/04/18/blog-process/CNAME2.PNG">
-</div>
-
-<p>老样子，单机博客文件夹，按住shift，打开shell，</p>
-<pre><code>hexo clean
-hexo d -g</code></pre><p>重新部署后，我就可以在浏览器上直接输blog.superfwithy.com进自己博客拉！</p>
-
+            <h2 id="1-更换主题"><a href="#1-更换主题" class="headerlink" title="1.更换主题"></a>1.<a href="https://hexo.io/themes/" target="_blank" rel="noopener">更换主题</a></h2><p>先到主题网站去看喜欢哪一个模板，比如我喜欢的是Chic主题，然后右键复制链接，老样子shift打开shell，先把模板下载到本地；</p>
+<pre><code>hexo clone https://siricee.github.io/hexo-theme-Chic/ themes/Chic
+# hexo clone 模板链接 指定保存位置</code></pre><h2 id="2-具体配置"><a href="#2-具体配置" class="headerlink" title="2.具体配置"></a>2.具体配置</h2>
         </div>
 
         
@@ -301,7 +227,7 @@ hexo d -g</code></pre><p>重新部署后，我就可以在浏览器上直接输b
                 <span class="tag">
                     
                     
-                        <a href="/tag/%E6%90%AD%E8%BD%BD/"># 搭载</a>
+                        <a href="/tag/setting/"># setting</a>
                     
                         
                 </span>
@@ -314,10 +240,8 @@ hexo d -g</code></pre><p>重新部署后，我就可以在浏览器上直接输b
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/04/20/personalized-setting/">personalized_setting</a>
             
-            
-            <a class="next" rel="next" href="/2020/04/13/Milk/">Milk</a>
+            <a class="next" rel="next" href="/2020/04/18/blog-process/">搭载Github+hexo博客记录</a>
             
         </section>
 
