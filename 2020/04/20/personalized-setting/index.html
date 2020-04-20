@@ -216,7 +216,7 @@
 <img width="250" src="/2020/04/20/personalized-setting/tag&category.PNG">
 </div>
 source文件就是放各种源文件的，比如你新建的博客；
-<br>public就是生成的静态文件，命令hexo g可生成，只有在public中生成，才能在你的博客中出现；
+<br>public就是生成的静态文件，就是生成的站点文件，命令hexo g可生成，只有在public中生成，才能在你的博客中出现；
 <br>archives文件是你的发出去的博客归档集合，是一个排版；
 <br>**重点来了！！！！！**
 <br>tag和category文件是标签和目录，
@@ -237,7 +237,7 @@ hexo new page category</code></pre><br>
 <div align="center">
 <img width="500" src="/2020/04/20/personalized-setting/category.PNG">
 </div>
-按照如下修改，
+按照如下修改front matter，也就是前言部分，
 <div align="center">
 <img width="250" src="/2020/04/20/personalized-setting/category2.PNG">
 </div>
@@ -263,7 +263,18 @@ tag也类似，
 <img width="500" src="/2020/04/20/personalized-setting/favicon.PNG">
 </div>
 
+<h2 id="4-发个文章"><a href="#4-发个文章" class="headerlink" title="4.发个文章"></a>4.发个文章</h2><pre><code>hexo new post personalized-setting</code></pre><p>然后会自动在source文件的_posts目录生成，personalized-setting.md文件，点开，可以修改front matter部分的title、tag、category等，title就是文章标题嘛,<br><br><strong>注：</strong>打开总站配置文件，找到Writing部分，可以发现，默认排版是post，post就是文章，因此，发文章的时候可以省略，直接hexo new 巴拉巴拉；</p>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/post.PNG">
+</div>
+<br>除post之外，layout也就是排版还有许多其他格式，进入scaffold，也就是模板文件夹，可以发现，有draft就是草稿，有page就是新的界面，类tag和category界面一样；
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/scaffold.PNG">
+</div>
+<br>全部弄好之后，再一次熟悉地，
 
+<pre><code>hexo clean # 清除缓存和已生成的静态文件，为了保证更新的完全，最好有这一步！
+hexo d -g # 只更新博客的话，只需要刷新浏览器就好。</code></pre>
         </div>
 
         
