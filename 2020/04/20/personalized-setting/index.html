@@ -192,14 +192,79 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/category/Blog/">Blog</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
             <h2 id="1-更换主题"><a href="#1-更换主题" class="headerlink" title="1.更换主题"></a>1.<a href="https://hexo.io/themes/" target="_blank" rel="noopener">更换主题</a></h2><p>先到主题网站去看喜欢哪一个模板，比如我喜欢的是Chic主题，然后右键复制链接，老样子shift打开shell，先把模板下载到本地；</p>
-<pre><code>hexo clone https://siricee.github.io/hexo-theme-Chic/ themes/Chic
-# hexo clone 模板链接 指定保存位置</code></pre><h2 id="2-具体配置"><a href="#2-具体配置" class="headerlink" title="2.具体配置"></a>2.具体配置</h2>
+<pre><code>git clone https://siricee.github.io/hexo-theme-Chic/ themes/Chic
+# git clone 模板链接 指定保存位置</code></pre><h2 id="2-具体配置"><a href="#2-具体配置" class="headerlink" title="2.具体配置"></a>2.具体配置</h2><p>打开博客目录，找到配置文件，拉到最底下，修改成指定的主题模板；</p>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/theme.PNG">
+</div>
+
+<p>然后拉到最上面，找到Site，可以设置title等…</p>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/theme2.PNG">
+</div>
+<br>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/theme3.PNG">
+</div>
+<br>再找到下面这个，
+<div align="center">
+<img width="250" src="/2020/04/20/personalized-setting/tag&category.PNG">
+</div>
+source文件就是放各种源文件的，比如你新建的博客；
+<br>public就是生成的静态文件，命令hexo g可生成，只有在public中生成，才能在你的博客中出现；
+<br>archives文件是你的发出去的博客归档集合，是一个排版；
+<br>**重点来了！！！！！**
+<br>tag和category文件是标签和目录，
+<br>但这两个文件需要自己先创建，在创建之前，先打开Chic主题的排版文件，
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/theme4.PNG">
+</div>
+可以发现对应的tag和category，换其他主题的时候可能是tags或者categories，总而言之，不同主题，就看它们的layout里面，tag和category是什么形式，这里都是单数。
+<br>然后我们shift+shell，创建目录,自动在source文件中，
+
+<pre><code>hexo new page tag
+hexo new page category</code></pre><br>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/theme5.PNG">
+</div>
+
+<p><br>先来编辑category文件，打开index.md，</p>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/category.PNG">
+</div>
+按照如下修改，
+<div align="center">
+<img width="250" src="/2020/04/20/personalized-setting/category2.PNG">
+</div>
+tag也类似，
+<br>
+<div align="center">
+<img width="500" src="/2020/04/20/personalized-setting/tag.PNG">
+</div>
+对应文章的，
+<div align="center">
+<img width="250" src="/2020/04/20/personalized-setting/category3.PNG">
+</div>
+<div align="center">
+<img width="250" src="/2020/04/20/personalized-setting/tag1.PNG">
+</div>
+<div align="center">
+<img width="250" src="/2020/04/20/personalized-setting/blogcontrast.PNG">
+</div>
+
         </div>
 
         
@@ -227,7 +292,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tag/setting/"># setting</a>
+                        <a href="/tag/%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE/"># 个性化配置</a>
                     
                         
                 </span>
