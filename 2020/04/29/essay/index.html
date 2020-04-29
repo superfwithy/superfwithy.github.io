@@ -201,15 +201,28 @@
 <img width="500" src="/2020/04/29/essay/A.png">
 </div>
 
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><h5 id="日期格式；"><a href="#日期格式；" class="headerlink" title="日期格式；"></a>日期格式；</h5><ul>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><h5 id="日期格式"><a href="#日期格式" class="headerlink" title="日期格式"></a>日期格式</h5><ul>
 <li>调用datetime库的datetime类，利用strptime函数，将字符串格式的日期处理成日期格式，为了加深记忆，这里把p理解为process；</li>
-<li>日期格式看着是年月日，但出现了valueerror；excel填的是年月日，但pd读取出时非常完全，加上了时分秒；因此要转换的正确格式应该也得加上时分秒；<h5 id="日期间隔；"><a href="#日期间隔；" class="headerlink" title="日期间隔；"></a>日期间隔；</h5></li>
-<li>调用matplotlib的gca函数，get current axes，返回现有坐标轴作为对象；针对x轴，调整日期主刻度为7天；也就是plt.gca().xaxis.set_major_locator(p),参数p要调用matplotlib的dates函数的DayLocator:日期刻度器，也就是pld.DayLocator(interval=7)；<h5 id="坐标轴设置上下限；"><a href="#坐标轴设置上下限；" class="headerlink" title="坐标轴设置上下限；"></a>坐标轴设置上下限；</h5></li>
-<li>调用matplotlib的ylim函数，设定bottom和top参数值；xlim函数，也有专门相应的日期范围：plt.xlim([datetime(2003,2,23),datetime(2003,4,29)]) <h5 id="日期重叠；"><a href="#日期重叠；" class="headerlink" title="日期重叠；"></a>日期重叠；</h5></li>
-<li>调用matplotlib的gcf函数的autofmt_xdate()方法，自动调整日期角度；gcf便于理解是get current figure，返回现有图这个对象，在图对象的基础上更改日期朝向；<h5 id="标题位置；"><a href="#标题位置；" class="headerlink" title="标题位置；"></a>标题位置；</h5></li>
-<li>添加参数x和y的坐标就可以移动title的位置；    <h5 id="直方图有空隙-加上边框-加上网格覆盖了图；"><a href="#直方图有空隙-加上边框-加上网格覆盖了图；" class="headerlink" title="直方图有空隙 + 加上边框 + 加上网格覆盖了图；"></a>直方图有空隙 + 加上边框 + 加上网格覆盖了图；</h5></li>
-<li>画直方图的时候加上参数，linewidth决定边框粗细，edgecolor决定边框颜色，width=1的时候，互相之间没有空隙了，zorder决定的是叠加顺序，zorder越大，越不会被覆盖，只加横网格，设定grid参数axis=’y’即可；<h5 id="去除多余边框；"><a href="#去除多余边框；" class="headerlink" title="去除多余边框；"></a>去除多余边框；</h5></li>
-<li>获取坐标轴对象，指定边框，设定不能见：plt.gca().spines[‘top’].set_visible(False)<h5 id="图片保存不完整；"><a href="#图片保存不完整；" class="headerlink" title="图片保存不完整；"></a>图片保存不完整；</h5></li>
+<li>日期格式看着是年月日，但出现了valueerror；excel填的是年月日，但pd读取出时非常完全，加上了时分秒；因此要转换的正确格式应该也得加上时分秒；</li>
+<li><h5 id="日期间隔"><a href="#日期间隔" class="headerlink" title="日期间隔"></a>日期间隔</h5></li>
+<li>调用matplotlib的gca函数，get current axes，返回现有坐标轴作为对象；针对x轴，调整日期主刻度为7天；也就是plt.gca().xaxis.set_major_locator(p),参数p要调用matplotlib的dates函数的DayLocator:日期刻度器，也就是pld.DayLocator(interval=7)；</li>
+</ul>
+<h5 id="坐标轴设置上下限"><a href="#坐标轴设置上下限" class="headerlink" title="坐标轴设置上下限"></a>坐标轴设置上下限</h5><ul>
+<li>调用matplotlib的ylim函数，设定bottom和top参数值；xlim函数，也有专门相应的日期范围：plt.xlim([datetime(2003,2,23),datetime(2003,4,29)]) </li>
+</ul>
+<h5 id="日期重叠"><a href="#日期重叠" class="headerlink" title="日期重叠"></a>日期重叠</h5><ul>
+<li>调用matplotlib的gcf函数的autofmt_xdate()方法，自动调整日期角度；gcf便于理解是get current figure，返回现有图这个对象，在图对象的基础上更改日期朝向；</li>
+</ul>
+<h5 id="标题位置"><a href="#标题位置" class="headerlink" title="标题位置"></a>标题位置</h5><ul>
+<li>添加参数x和y的坐标就可以移动title的位置；    </li>
+</ul>
+<h5 id="直方图有空隙-加上边框-加上网格覆盖了图"><a href="#直方图有空隙-加上边框-加上网格覆盖了图" class="headerlink" title="直方图有空隙 + 加上边框 + 加上网格覆盖了图"></a>直方图有空隙 + 加上边框 + 加上网格覆盖了图</h5><ul>
+<li>画直方图的时候加上参数，linewidth决定边框粗细，edgecolor决定边框颜色，width=1的时候，互相之间没有空隙了，zorder决定的是叠加顺序，zorder越大，越不会被覆盖，只加横网格，设定grid参数axis=’y’即可；</li>
+</ul>
+<h5 id="去除多余边框"><a href="#去除多余边框" class="headerlink" title="去除多余边框"></a>去除多余边框</h5><ul>
+<li>获取坐标轴对象，指定边框，设定不能见：plt.gca().spines[‘top’].set_visible(False)</li>
+</ul>
+<h5 id="图片保存不完整"><a href="#图片保存不完整" class="headerlink" title="图片保存不完整"></a>图片保存不完整</h5><ul>
 <li>设置bounding box边界框，bbox_inches=’tight’:它会计算出完全包含图像的一个矩形；</li>
 </ul>
 <h3 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h3><div align="center">
