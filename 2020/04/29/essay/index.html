@@ -107,68 +107,6 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
@@ -201,31 +139,25 @@
 <div align="center">
 <img width="500" src="/2020/04/29/essay/A.png">
 </div>
-### 逗逗这些小可爱们
-1. 日期格式；
-    * 调用datetime库的datetime类，利用strptime函数，将字符串格式的日期处理成日期格式，为了加深记忆，这里把p理解为process；
-    * 日期格式看着是年月日，但出现了valueerror；excel填的是年月日，但pd读取出时非常完全，加上了时分秒；因此要转换的正确格式应该也得加上时分秒；
-2. 日期间隔；
-    * 调用matplotlib的gca函数，get current axes，返回现有坐标轴作为对象；针对x轴，调整日期主刻度为7天；也就是plt.gca().xaxis.set_major_locator(p),参数p要调用matplotlib的dates函数的DayLocator:日期刻度器，也就是pld.DayLocator(interval=7)；
-3. 坐标轴设置上下限；
-    * 调用matplotlib的ylim函数，设定bottom和top参数值；xlim函数，也有专门相应的日期范围：plt.xlim([datetime(2003,2,23),datetime(2003,4,29)]) 
-4. 日期重叠；
-    * 调用matplotlib的gcf函数的autofmt_xdate()方法，自动调整日期角度；gcf便于理解是get current figure，返回现有图这个对象，在图对象的基础上更改日期朝向；
-5. 标题位置；
-    * 添加参数x和y的坐标就可以移动title的位置；    
-6. 直方图有空隙 + 加上边框 + 加上网格覆盖了图；
-    * 画直方图的时候加上参数，linewidth决定边框粗细，edgecolor决定边框颜色，width=1的时候，互相之间没有空隙了，zorder决定的是叠加顺序，zorder越大，越不会被覆盖，只加横网格，设定grid参数axis='y'即可；
-7. 去除多余边框；
-    * 获取坐标轴对象，指定边框，设定不能见：plt.gca().spines['top'].set_visible(False)
-8. 图片保存不完整；
-    * 设置bounding box边界框，bbox_inches='tight':它会计算出完全包含图像的一个矩形；
 
-
-<h3 id="具体复现"><a href="#具体复现" class="headerlink" title="具体复现"></a>具体复现</h3><div align="center">
+<p>###注意<br>#####日期格式；</p>
+<ul>
+<li>调用datetime库的datetime类，利用strptime函数，将字符串格式的日期处理成日期格式，为了加深记忆，这里把p理解为process；</li>
+<li>日期格式看着是年月日，但出现了valueerror；excel填的是年月日，但pd读取出时非常完全，加上了时分秒；因此要转换的正确格式应该也得加上时分秒；<br>#####日期间隔；</li>
+<li>调用matplotlib的gca函数，get current axes，返回现有坐标轴作为对象；针对x轴，调整日期主刻度为7天；也就是plt.gca().xaxis.set_major_locator(p),参数p要调用matplotlib的dates函数的DayLocator:日期刻度器，也就是pld.DayLocator(interval=7)；<br>#####坐标轴设置上下限；</li>
+<li>调用matplotlib的ylim函数，设定bottom和top参数值；xlim函数，也有专门相应的日期范围：plt.xlim([datetime(2003,2,23),datetime(2003,4,29)])<br>#####日期重叠；</li>
+<li>调用matplotlib的gcf函数的autofmt_xdate()方法，自动调整日期角度；gcf便于理解是get current figure，返回现有图这个对象，在图对象的基础上更改日期朝向；<br>#####标题位置；</li>
+<li>添加参数x和y的坐标就可以移动title的位置；<br>#####直方图有空隙 + 加上边框 + 加上网格覆盖了图；</li>
+<li>画直方图的时候加上参数，linewidth决定边框粗细，edgecolor决定边框颜色，width=1的时候，互相之间没有空隙了，zorder决定的是叠加顺序，zorder越大，越不会被覆盖，只加横网格，设定grid参数axis=’y’即可；<br>#####去除多余边框；</li>
+<li>获取坐标轴对象，指定边框，设定不能见：plt.gca().spines[‘top’].set_visible(False)<br>#####图片保存不完整；</li>
+<li>设置bounding box边界框，bbox_inches=’tight’:它会计算出完全包含图像的一个矩形；</li>
+</ul>
+<p>###复现</p>
+<div align="center">
 <img width="500" src="/2020/04/29/essay/A_.png">
 </div>
 
-<h3 id="不完美保留"><a href="#不完美保留" class="headerlink" title="不完美保留"></a>不完美保留</h3><p>可以发现8，这个我真的无语啦！！！！！间隔的确设置了7，范围也没错，但就是不从2.25日开始，我不得不前后调整范围，日期显示对上了，范围对不上，目前也捉摸不透问题具体在哪里，留~</p>
+<p>###不完美保留<br>可以发现8，这个我真的无语啦！！！！！间隔的确设置了7，范围也没错，但就是不从2.25日开始，我不得不前后调整范围，日期显示对上了，范围对不上，目前也捉摸不透问题具体在哪里，留~</p>
 
         </div>
 
