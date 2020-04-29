@@ -16,7 +16,7 @@
     <meta name="keywords" content="vincynese,fangyan,fy's blog">
 
 
-<title>个性化博客过程记录 | Super vincynese&#39;s blog</title>
+<title>python实现SCI论文图表过程全记录 | Super vincynese&#39;s blog</title>
 
 
 
@@ -173,21 +173,21 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">个性化博客过程记录</h1>
+            <h1 class="post-title">python实现SCI论文图表过程全记录</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">四月 20, 2020&nbsp;&nbsp;10:30:49</a>
+                        Date: <a href="#">四月 29, 2020&nbsp;&nbsp;15:23:59</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/category/Blog/">Blog</a>
+                                <a href="/category/python/">python</a>
                             
                         </span>
                     
@@ -196,85 +196,37 @@
         </header>
 
         <div class="post-content">
-            <h2 id="1-更换主题"><a href="#1-更换主题" class="headerlink" title="1.更换主题"></a>1.<a href="https://hexo.io/themes/" target="_blank" rel="noopener">更换主题</a></h2><p>先到主题网站去看喜欢哪一个模板，比如我喜欢的是Chic主题，然后右键复制链接，老样子shift打开shell，先把模板下载到本地；</p>
-<pre><code>git clone https://siricee.github.io/hexo-theme-Chic/ themes/Chic
-# git clone 模板链接 指定保存位置</code></pre><h2 id="2-站点具体配置"><a href="#2-站点具体配置" class="headerlink" title="2.站点具体配置"></a>2.站点具体配置</h2><p>打开博客目录，找到配置文件，拉到最底下，修改成指定的主题模板；</p>
+            <p>心里路程：<br>具体问题具体分析，好玩的库有很多，但如果用不到，你也不必陷入自我否定的漩涡里，工具是来运用的，如果只是认识，不去应用，不如没有；因此掌握好图里用到的就行；目前这只是技术问题；能力者要有能力者的样子；<br>我想知道datetime的文档，因为要改掉从excel读取出来的数据是字符串形式，要改成日期，我看了官方文档，让本来就破碎的我又快碎了；所以不要一下又一下，参看别人整理的也不是不好啊！又不代表你很vegetable！是为了出图，而不是和别人pk哦！因此搜索别人整理出来的；</p>
+<p>##图A</p>
 <div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/theme.PNG">
+<img width="500" src="/2020/04/29/essay/A.png">
+</div>
+### 逗逗这些小可爱们
+1. 日期格式；
+    * 调用datetime库的datetime类，利用strptime函数，将字符串格式的日期处理成日期格式，为了加深记忆，这里把p理解为process；
+    * 日期格式看着是年月日，但出现了valueerror；excel填的是年月日，但pd读取出时非常完全，加上了时分秒；因此要转换的正确格式应该也得加上时分秒；
+2. 日期间隔；
+    * 调用matplotlib的gca函数，get current axes，返回现有坐标轴作为对象；针对x轴，调整日期主刻度为7天；也就是plt.gca().xaxis.set_major_locator(p),参数p要调用matplotlib的dates函数的DayLocator:日期刻度器，也就是pld.DayLocator(interval=7)；
+3. 坐标轴设置上下限；
+    * 调用matplotlib的ylim函数，设定bottom和top参数值；xlim函数，也有专门相应的日期范围：plt.xlim([datetime(2003,2,23),datetime(2003,4,29)]) 
+4. 日期重叠；
+    * 调用matplotlib的gcf函数的autofmt_xdate()方法，自动调整日期角度；gcf便于理解是get current figure，返回现有图这个对象，在图对象的基础上更改日期朝向；
+5. 标题位置；
+    * 添加参数x和y的坐标就可以移动title的位置；    
+6. 直方图有空隙 + 加上边框 + 加上网格覆盖了图；
+    * 画直方图的时候加上参数，linewidth决定边框粗细，edgecolor决定边框颜色，width=1的时候，互相之间没有空隙了，zorder决定的是叠加顺序，zorder越大，越不会被覆盖，只加横网格，设定grid参数axis='y'即可；
+7. 去除多余边框；
+    * 获取坐标轴对象，指定边框，设定不能见：plt.gca().spines['top'].set_visible(False)
+8. 图片保存不完整；
+    * 设置bounding box边界框，bbox_inches='tight':它会计算出完全包含图像的一个矩形；
+
+
+<h3 id="具体复现"><a href="#具体复现" class="headerlink" title="具体复现"></a>具体复现</h3><div align="center">
+<img width="500" src="/2020/04/29/essay/A_.png">
 </div>
 
-<p>然后拉到最上面，找到Site，可以设置title等…</p>
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/theme2.PNG">
-</div>
-<br>
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/theme3.PNG">
-</div>
-<br>再找到下面这个，
-<div align="center">
-<img width="250" src="/2020/04/20/personalized-setting/tag&category.PNG">
-</div>
-source文件就是放各种源文件的，比如你新建的博客；
-<br>public就是生成的静态文件，就是生成的站点文件，命令hexo g可生成，只有在public中生成，才能在你的博客中出现；
-<br>archives文件是你的发出去的博客归档集合，是一个排版；
-<br>**重点来了！！！！！**
-<br>tag和category文件是标签和目录，
-<br>但这两个文件需要自己先创建，在创建之前，先打开Chic主题的排版文件，
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/theme4.PNG">
-</div>
-可以发现对应的tag和category，换其他主题的时候可能是tags或者categories，总而言之，不同主题，就看它们的layout里面，tag和category是什么形式，这里都是单数。
-<br>然后我们shift+shell，创建目录,自动在source文件中，
+<h3 id="不完美保留"><a href="#不完美保留" class="headerlink" title="不完美保留"></a>不完美保留</h3><p>可以发现8，这个我真的无语啦！！！！！间隔的确设置了7，范围也没错，但就是不从2.25日开始，我不得不前后调整范围，日期显示对上了，范围对不上，目前也捉摸不透问题具体在哪里，留~</p>
 
-<pre><code>hexo new page tag
-hexo new page category</code></pre><br>
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/theme5.PNG">
-</div>
-
-<p><br>先来编辑category文件，打开index.md，</p>
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/category.PNG">
-</div>
-按照如下修改front matter，也就是前言部分，
-<div align="center">
-<img width="250" src="/2020/04/20/personalized-setting/category2.PNG">
-</div>
-tag也类似，
-<br>
-<div align="center">
-<img width="250" src="/2020/04/20/personalized-setting/tag.PNG">
-</div>
-对应文章的，
-<div align="center">
-<img width="250" src="/2020/04/20/personalized-setting/blogcontrast.PNG">
-</div>
-实际效果的，
-<div align="center">
-<img width="250" src="/2020/04/20/personalized-setting/category3.PNG">
-</div>
-<div align="center">
-<img width="250" src="/2020/04/20/personalized-setting/tag1.PNG">
-</div>
-
-<h2 id="3-主题具体配置"><a href="#3-主题具体配置" class="headerlink" title="3.主题具体配置"></a>3.主题具体配置</h2><p>进入themes目录，进入Chic文件夹，点开_config.yml配置文件，和上面的配置文件不同的就是，这个是针对主题的，上一个是全局的，不管哪个主题都适用。</p>
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/favicon.PNG">
-</div>
-
-<h2 id="4-发个文章"><a href="#4-发个文章" class="headerlink" title="4.发个文章"></a>4.发个文章</h2><pre><code>hexo new post personalized-setting</code></pre><p>然后会自动在source文件的_posts目录生成，personalized-setting.md文件，点开，可以修改front matter部分的title、tag、category等，title就是文章标题嘛,<br><br><strong>注：</strong>打开总站配置文件，找到Writing部分，可以发现，默认排版是post，post就是文章，因此，发文章的时候可以省略，直接hexo new 巴拉巴拉；</p>
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/post.PNG">
-</div>
-<br>除post之外，layout也就是排版还有许多其他格式，进入scaffold，也就是模板文件夹，可以发现，有draft就是草稿，有page就是新的界面，类tag和category界面一样；
-<div align="center">
-<img width="500" src="/2020/04/20/personalized-setting/scaffold.PNG">
-</div>
-<br>全部弄好之后，再一次熟悉地，
-
-<pre><code>hexo clean # 清除缓存和已生成的静态文件，为了保证更新的完全，最好有这一步！
-hexo d -g # 每一次更新文章还是配置，都要输入这两条命令</code></pre>
         </div>
 
         
@@ -302,7 +254,7 @@ hexo d -g # 每一次更新文章还是配置，都要输入这两条命令</cod
                 <span class="tag">
                     
                     
-                        <a href="/tag/%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE/"># 个性化配置</a>
+                        <a href="/tag/matplotlib/"># matplotlib</a>
                     
                         
                 </span>
@@ -315,10 +267,8 @@ hexo d -g # 每一次更新文章还是配置，都要输入这两条命令</cod
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/04/29/essay/">python实现SCI论文图表过程全记录</a>
             
-            
-            <a class="next" rel="next" href="/2020/04/18/blog-process/">搭载Github+hexo博客记录</a>
+            <a class="next" rel="next" href="/2020/04/20/personalized-setting/">个性化博客过程记录</a>
             
         </section>
 
