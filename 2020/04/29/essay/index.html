@@ -204,7 +204,8 @@
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><h5 id="日期格式"><a href="#日期格式" class="headerlink" title="日期格式"></a>日期格式</h5><ul>
 <li>调用datetime库的datetime类，利用strptime函数，将字符串格式的日期处理成日期格式，为了加深记忆，这里把p理解为process；</li>
 <li>日期格式看着是年月日，但出现了valueerror；excel填的是年月日，但pd读取出时非常完全，加上了时分秒；因此要转换的正确格式应该也得加上时分秒；</li>
-<li><h5 id="日期间隔"><a href="#日期间隔" class="headerlink" title="日期间隔"></a>日期间隔</h5></li>
+</ul>
+<h5 id="日期间隔"><a href="#日期间隔" class="headerlink" title="日期间隔"></a>日期间隔</h5><ul>
 <li>调用matplotlib的gca函数，get current axes，返回现有坐标轴作为对象；针对x轴，调整日期主刻度为7天；也就是plt.gca().xaxis.set_major_locator(p),参数p要调用matplotlib的dates函数的DayLocator:日期刻度器，也就是pld.DayLocator(interval=7)；</li>
 </ul>
 <h5 id="坐标轴设置上下限"><a href="#坐标轴设置上下限" class="headerlink" title="坐标轴设置上下限"></a>坐标轴设置上下限</h5><ul>
@@ -216,7 +217,7 @@
 <h5 id="标题位置"><a href="#标题位置" class="headerlink" title="标题位置"></a>标题位置</h5><ul>
 <li>添加参数x和y的坐标就可以移动title的位置；    </li>
 </ul>
-<h5 id="直方图有空隙-加上边框-加上网格覆盖了图"><a href="#直方图有空隙-加上边框-加上网格覆盖了图" class="headerlink" title="直方图有空隙 + 加上边框 + 加上网格覆盖了图"></a>直方图有空隙 + 加上边框 + 加上网格覆盖了图</h5><ul>
+<h5 id="直方图有空隙-加上边框-网格覆盖了图"><a href="#直方图有空隙-加上边框-网格覆盖了图" class="headerlink" title="直方图有空隙 + 加上边框 + 网格覆盖了图"></a>直方图有空隙 + 加上边框 + 网格覆盖了图</h5><ul>
 <li>画直方图的时候加上参数，linewidth决定边框粗细，edgecolor决定边框颜色，width=1的时候，互相之间没有空隙了，zorder决定的是叠加顺序，zorder越大，越不会被覆盖，只加横网格，设定grid参数axis=’y’即可；</li>
 </ul>
 <h5 id="去除多余边框"><a href="#去除多余边框" class="headerlink" title="去除多余边框"></a>去除多余边框</h5><ul>
@@ -230,6 +231,35 @@
 </div>
 
 <h3 id="不完美保留"><a href="#不完美保留" class="headerlink" title="不完美保留"></a>不完美保留</h3><p>可以发现8，这个我真的无语啦！！！！！间隔的确设置了7，范围也没错，但就是不从2.25日开始，我不得不前后调整范围，日期显示对上了，范围对不上，目前也捉摸不透问题具体在哪里，留~</p>
+<h2 id="图B"><a href="#图B" class="headerlink" title="图B"></a>图B</h2><div align="center">
+<img width="500" src="/2020/04/29/essay/B.png">
+</div>
+
+<h3 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h3><h5 id="日期格式-1"><a href="#日期格式-1" class="headerlink" title="日期格式"></a>日期格式</h5><ul>
+<li>很奇妙，不转换也是时间戳，但映射到轴上会有时分秒，但是进行了日期格式strptime转换映射就只有年月日，没有模棱两可的东西！留~</li>
+</ul>
+<h5 id="图形选择"><a href="#图形选择" class="headerlink" title="图形选择"></a>图形选择</h5><ul>
+<li>一直觉得是箱型图，发现多了个箱子；也查了误差条，发现，也不符合；最后之后自己手动映射，其实很简单，直接映射极值点，平均值，基准线就可。</li>
+</ul>
+<h5 id="连接两个点"><a href="#连接两个点" class="headerlink" title="连接两个点"></a>连接两个点</h5><ul>
+<li>连接点的话，plot的时候一定要多个一起x[i],y[i]，不能单个。</li>
+</ul>
+<h5 id="平均值"><a href="#平均值" class="headerlink" title="平均值"></a>平均值</h5><ul>
+<li><p>既然是仿照，那就得尽可能的接近原图，然而，怎么看都有点不像，首先可以调整scatter来得到空心圈；再调整size，不要太小；最后发现其实平均值不一定要是整数啊，继发病例也可能是1,3,3，但平均值是2.3。</p>
+</li>
+<li><p>这里还有一个TypeError: ufunc ‘sqrt’ not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ‘‘safe’’</p>
+<pre><code>plt.scatter(x[i],y[i],&apos;ko&apos;) #别说空心圈了，连黑色实心圈都没有
+plt.scatter(x[i],y[i],marker=&apos;o&apos;,color=&apos;&apos;,edgecolors=&apos;k&apos;,size=50)
+#错误是因为格式不对，一定要参数，大概是因为空心圈的参数太多还无法省略吧</code></pre></li>
+</ul>
+<h5 id="y轴显示值"><a href="#y轴显示值" class="headerlink" title="y轴显示值"></a>y轴显示值</h5><ul>
+<li>只想显示某些数字，开始查找了修改间隔，后来发现不对，或许应该是不同间隔，也不对，直接yticks赋值即可。</li>
+</ul>
+<h3 id="复现-1"><a href="#复现-1" class="headerlink" title="复现"></a>复现</h3><div align="center">
+<img width="500" src="/2020/04/29/essay/B_.png">
+</div>
+
+
 
         </div>
 
